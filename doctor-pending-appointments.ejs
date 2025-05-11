@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pending Appointments</title>
+    <style>
+        /* Overall Page Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e3f2fd;
+            /* Light blue background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            /* Ensures full height of the viewport */
+        }
+
+        /* Container for the Appointments Table */
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 900px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Heading for the page */
+        h1 {
+            font-size: 2.5rem;
+            color: #1976D2;
+            margin-bottom: 20px;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #1976D2;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        td {
+            font-size: 1rem;
+        }
+
+        /* Action Button Styling */
+        button {
+            background-color: #1976D2;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #1565C0;
+            transform: scale(1.05);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* No Appointments Text */
+        p {
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        /* Go to Dashboard Link */
+        a {
+            text-decoration: none;
+            color: #1976D2;
+            font-weight: bold;
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #1565C0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Pending Appointments</h1>
+
+        <% if (appointments.length> 0) { %>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Patient Name</th>
+                        <th>Appointment Date</th>
+                        <th>Appointment Time</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                        <th>Patient Info</th> <!-- New Column -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <% appointments.forEach(appointment => { %>
+                        <tr>
+                            <td><%= appointment.patient_name %></td>
+                            <td><%= appointment.appointment_date %></td>
+                            <td><%= appointment.appointment_time %></td>
+                            <td><%= appointment.status %></td>
+                            <td>
+                                <% if (appointment.status === "Pending") { %>
+                                    <form action="/doctor/appointment-response" method="POST" style="display:inline;">
+                                        <input type="hidden" name="appointmentId" value="<%= appointment.appointment_id %>">
+                                        <button type="submit" name="action" value="accept">Accept</button>
+                                    </form>
+                                    <form action="/doctor/appointment-response" method="POST" style="display:inline;">
+                                        <input type="hidden" name="appointmentId" value="<%= appointment.appointment_id %>">
+                                        <button type="submit" name="action" value="reject">Reject</button>
+                                    </form>
+                                <% } %>
+                            </td>
+                            <td>
+                                <a href="/doctor/patient-info/<%= appointment.patient_id %>">
+                                    <button>Patient Info</button>
+                                </a>
+                            </td> <!-- New Column -->
+                        </tr>
+                    <% }); %>
+                </tbody>
+                
+
+            </table>
+            <% } else { %>
+                <p>No pending appointments.</p>
+                <% } %>
+
+                    <a href="/doctors/dashboard">Go to Dashboard</a>
+    </div>
+</body>
+
+</html>

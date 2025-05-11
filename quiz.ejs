@@ -1,0 +1,120 @@
+<%- include('partials/header') %>
+
+<style>
+  /* General Styling */
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e3f2fd; /* Light blue */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  /* Centered Quiz Box */
+  .quiz-container {
+    text-align: left;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 65%; /* Increased width */
+    max-height: 90vh; /* Prevents content from going off-screen */
+    overflow-y: auto; /* Adds scrolling if needed */
+  }
+
+  /* Title */
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+
+  /* Labels & Questions */
+  label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: block;
+    margin: 15px 0 5px;
+  }
+
+  input[type="radio"] {
+    margin-right: 10px;
+  }
+
+  /* Age Input */
+  input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+
+  /* Submit Button */
+  button {
+    background: #1976D2;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 20px;
+  }
+
+  button:hover {
+    background: #1565C0;
+  }
+
+</style>
+
+<div class="quiz-container">
+  <h1>Quiz</h1>
+
+  <!-- Quiz Form -->
+  <form action="/submit-quiz" method="POST">
+    <input type="hidden" name="quizType">
+
+    <label for="question1">What are your major concerns?</label>
+    <input type="radio" name="question1" value="Anxiety"> Anxiety<br>
+    <input type="radio" name="question1" value="Depression"> Depression<br>
+    <input type="radio" name="question1" value="Stress Management"> Stress Management<br>
+    <input type="radio" name="question1" value="Family Relationship Issues"> Family Relationship Issues<br>
+    <input type="radio" name="question1" value="Career Counseling"> Career Counseling<br>
+    <input type="radio" name="question1" value="Addiction Recovery"> Addiction Recovery<br>
+
+    <label for="question2">How long have you been experiencing these concerns?</label>
+    <input type="radio" name="question2" value="Less than a month"> Less than a month<br>
+    <input type="radio" name="question2" value="1-6 months"> 1-6 months<br>
+    <input type="radio" name="question2" value="More than 6 months"> More than 6 months<br>
+    <input type="radio" name="question2" value="Over a year"> Over a year<br>
+
+    <label for="question3">How difficult is it for you to manage these concerns?</label>
+    <input type="radio" name="question3" value="Not difficult at all"> Not difficult at all<br>
+    <input type="radio" name="question3" value="Somewhat difficult"> Somewhat difficult<br>
+    <input type="radio" name="question3" value="Very difficult"> Very difficult<br>
+    <input type="radio" name="question3" value="Extremely difficult"> Extremely difficult<br>
+
+    <label for="question4">Which languages are you comfortable with?</label>
+    <input type="radio" name="question4" value="English"> English<br>
+    <input type="radio" name="question4" value="Hindi"> Hindi<br>
+    <input type="radio" name="question4" value="Telugu"> Telugu<br>
+    <input type="radio" name="question4" value="Kannada">Kannada<br>
+
+    <label for="question5">How old are you?</label>
+    <input type="number" name="question5" min="14" max="120" placeholder="Enter your age"><br>
+
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,157 @@
+<%- include('partials/header') %>
+    <style>
+        /* Overall Page Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e3f2fd;
+            /* Light blue background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            /* Ensures full height of the viewport */
+        }
+
+        /* Container for the Form */
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Heading for the page */
+        h1 {
+            font-size: 2.5rem;
+            color: #1976D2;
+            margin-bottom: 30px;
+        }
+
+        /* Label and Input Styles */
+        label {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Select Input Styling */
+        select,
+        input[type="time"] {
+            padding: 10px;
+            font-size: 1rem;
+            margin: 10px 0;
+            width: 100%;
+            max-width: 250px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        /* Button Styling */
+        button {
+            background-color: #1976D2;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        button:hover {
+            background-color: #1565C0;
+            transform: scale(1.05);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Time Slots Div Styling */
+        #timeSlots {
+            margin-top: 20px;
+        }
+
+        /* Error / No Availability Message */
+        p {
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        /* Go to Dashboard Link */
+        a {
+            text-decoration: none;
+            color: #1976D2;
+            font-weight: bold;
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #1565C0;
+        }
+    </style>
+
+    <div class="container">
+        <h1>Set Your Daily Availability</h1>
+
+        <form action="/set-daily-availability" method="POST">
+            <label for="isAvailable">Are you available today?</label>
+            <select name="isAvailable" id="isAvailable" required onchange="toggleTimeSlots(this.value)">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+            <div id="timeSlots" style="display: none;">
+                <label for="startTime">Start Time:</label>
+                <input type="time" name="startTime" id="startTime" required>
+
+                <label for="endTime">End Time:</label>
+                <input type="time" name="endTime" id="endTime" required>
+            </div>
+
+            <button type="submit">Save</button>
+        </form>
+    </div>
+
+    <script>
+        // function toggleTimeSlots(value) {
+        //     const timeSlotsDiv = document.getElementById("timeSlots");
+        //     if (value === "yes") {
+        //         timeSlotsDiv.style.display = "block";
+        //     } else {
+        //         timeSlotsDiv.style.display = "none";
+        //     }
+        // }
+        function toggleTimeSlots(value) {
+            const timeSlotsDiv = document.getElementById("timeSlots");
+            const startTime = document.getElementById("startTime");
+            const endTime = document.getElementById("endTime");
+
+            if (value === "yes") {
+                timeSlotsDiv.style.display = "block";
+                startTime.required = true;
+                endTime.required = true;
+            } else {
+                timeSlotsDiv.style.display = "none";
+                startTime.required = false;
+                endTime.required = false;
+                startTime.value = "";
+                endTime.value = "";
+            }
+        }
+
+    </script>
+
+
+    <%- include('partials/footer') %>

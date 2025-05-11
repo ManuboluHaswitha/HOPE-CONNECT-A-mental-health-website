@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Info</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            text-align: center;
+        }
+        h2 {
+            color: #1976D2;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #333;
+        }
+        .back-button {
+            background-color: #1976D2;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .back-button:hover {
+            background-color: #1565C0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Patient Information</h2>
+        <p><strong>Name:</strong> <%= patient.name %></p>
+        <p><strong>Age:</strong> <%= patient.age %> years</p>
+        <p><strong>Place:</strong> <%= patient.place %></p>
+        <p><strong>Field of Study:</strong> <%= patient.study_field %></p>
+        <p><strong>Quiz Answers:</strong> <%= patient.answers.question1 %></p>
+        <p><strong>Result:</strong> <%= patient.result %></p>
+
+        <a href="/doctor/pending-appointments" class="back-button">Back to Appointments</a>
+    </div>
+</body>
+</html>

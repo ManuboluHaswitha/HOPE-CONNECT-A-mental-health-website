@@ -1,0 +1,169 @@
+<%- include('partials/header') %>
+  <style>
+    /* Overall Page Styling */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #e3f2fd;
+      /* Same background color as quiz page */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    /* Container for the Registration Form */
+    .container {
+      background-color: transparent;
+      /* Keep transparent background for the container */
+      padding: 40px;
+      border-radius: 12px;
+      width: 90%;
+      /* Ensure the container itself is wider */
+      max-width: 1200px;
+      /* Increased max-width to 1200px */
+      margin-top: 50px;
+    }
+
+    /* Heading for the page */
+    h1 {
+      font-size: 2.5rem;
+      color: #1976D2;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    /* Form Card Styling */
+    .card {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    /* Form Elements Styling */
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    /* Input Field Styling */
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    input[type="date"],
+    select {
+      padding: 12px;
+      font-size: 1rem;
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      box-sizing: border-box;
+      margin-top: 8px;
+    }
+
+    /* Multi-Select Styling */
+    select[multiple] {
+      height: auto;
+      max-height: 150px;
+      overflow-y: auto;
+    }
+
+    /* Button Styling */
+    button {
+      background-color: #1976D2;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      font-size: 1.1rem;
+    }
+
+    button:hover {
+      background-color: #1565C0;
+      transform: scale(1.05);
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Footer Padding */
+    footer {
+      margin-top: 30px;
+    }
+  </style>
+  <div class="container mt-5">
+    <h1>Therapist Registration</h1>
+
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="card">
+          <div class="card-body">
+
+            <!-- Makes POST request to /registertheri route -->
+            <form action="/registertheri" method="POST">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="username" required>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" required>
+              </div>
+              <div class="form-group">
+                <label for="doj">Years of Experience</label>
+                <input type="number" min="3" max="42" class="form-control" name="doj" required>
+              </div>
+              <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" class="form-control" name="dob" required>
+              </div>
+              <div class="form-group">
+                <label for="phoneno">Phone No</label>
+                <input type="text" class="form-control" name="phoneno" required>
+              </div>
+              <div class="form-group">
+                <label for="study">Degree</label>
+                <select class="form-control" name="study" required>
+                  <option selected disabled>Click to select</option>
+                  <option value="Bachelor's">Bachelor's in Psychology</option>
+                  <option value="Master's">Master's in Psychology</option>
+                  <option value="PhD">PhD in Psychology</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="specializations">Specializations</label>
+                <select class="form-control" name="specializations[]" multiple required>
+                  <option value="1">Anxiety</option>
+                  <option value="2">Depression</option>
+                  <option value="3">Stress Management</option>
+                  <option value="4">Family Relationship Issues</option>
+                  <option value="5">Career Counseling</option>
+                  <option value="6">Addiction Recovery</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="languages">Languages</label>
+                <select class="form-control" name="languages" multiple required aria-label="Select languages">
+                  <option value="Hindi">Hindi</option>
+                  <option value="English">English</option>
+                  <option value="Kannada">Kannada</option>
+                  <option value="Telugu">Telugu</option>
+                </select>
+                <small class="form-text text-muted">
+                  Hold Ctrl (or Cmd on Mac) to select multiple options.
+                </small>
+              </div>
+              <button type="submit" class="btn btn-dark">Register</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include('partials/footer') %>

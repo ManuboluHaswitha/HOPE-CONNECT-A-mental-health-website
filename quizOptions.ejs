@@ -1,0 +1,99 @@
+<%- include('partials/header') %>
+  <style>
+    /* Overall Page Styling */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f4f8;
+      /* Light grayish color (same as quiz page) */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding-top: 30px;
+    }
+
+    /* Container for the Content */
+    .container {
+      background-color: #ffffff;
+      /* White background for the content */
+      padding: 30px;
+      border-radius: 12px;
+      width: 80%;
+      max-width: 900px;
+      margin-top: 50px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Heading for the Page */
+    h1 {
+      font-size: 2.5rem;
+      color: #1976D2;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Additional Heading for Appointment */
+    h2 {
+      font-size: 2rem;
+      color: #333;
+      margin-top: 30px;
+    }
+
+    /* Paragraph Styling */
+    p {
+      font-size: 1rem;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    /* Button Styling */
+    button {
+      background-color: #1976D2;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      font-size: 1.1rem;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #1565C0;
+      transform: scale(1.05);
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Footer Padding */
+    footer {
+      margin-top: 30px;
+    }
+  </style>
+
+  <div class="container">
+    <h1>Welcome back! What would you like to do?</h1>
+
+    <% if (appointment) { %>
+      <h2>Your Latest Appointment</h2>
+      <p><strong>Date:</strong> <%= appointment.date %></p>
+      <p><strong>Time:</strong> <%= appointment.time %></p>
+      <p><strong>Status:</strong> <%= appointment.status %></p>
+    <% } else { %>
+      <p>You have no upcoming appointments.</p>
+    <% } %>
+
+    <form action="/retake-quiz" method="POST">
+      <button type="submit">Retake the Quiz</button>
+    </form>
+
+    <form action="/recommended-doctors" method="GET">
+      <button type="submit">View My Results</button>
+    </form>
+    <a href="/logout">Logout</a>
+  </div>
+<%- include('partials/footer') %>

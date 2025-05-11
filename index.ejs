@@ -1,0 +1,99 @@
+<%- include('partials/header') %>
+<style>
+
+/* Overall Page Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e3f2fd; /* Light blue background */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* Home Container */
+.home {
+    text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Styling for the "Hope Connect" Heading */
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1976D2;
+    margin-bottom: 30px;
+}
+
+/* Styling for Therapist and User sections */
+.thero, .user {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Flexbox Layout for Options */
+.options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Link Styles to Look Like Buttons */
+.thero a, .user a {
+    text-decoration: none;
+    background: #1976D2;
+    color: white;
+    padding: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 6px;
+    width: 80%;
+    max-width: 300px;
+    text-align: center;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Hover Effect for Links */
+.thero a:hover, .user a:hover {
+    background: #1565C0;
+    transform: scale(1.05);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    .home {
+        width: 80%;
+    }
+    .thero a, .user a {
+        width: 90%;
+    }
+}
+</style>
+
+
+<div class="home">
+  <h1>Hope Connect</h1>
+  <div class="thero">
+    <a href="logintheri">Sign In as Therapist</a>
+    <a href="registertheri">Sign Up as Therapist</a>
+  </div>
+  <div class="user">
+    <a href="/login">Sign In as User</a>
+    <a href="/register">Sign Up as User</a>
+  </div>
+</div>
+
+
+<%- include('partials/footer') %>
